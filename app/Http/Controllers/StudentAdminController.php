@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Grade;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class GradeController extends Controller
+class StudentAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() {
+    public function index()
+    {
+        // Memuat data relasi grade dan department
+        $students = Student::with('grade.department')->get();
 
-        $grades = Grade::all();
-
-        return view('grade', [
-            'title' => 'Grade',
-            'grades' => $grades->load('students', 'department')
-
-
-            ]);
+        return view('student-admin', [
+            'title' => 'Students',
+            'students' => $students,
+        ]);
     }
 
     /**

@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-admin>
     <x-slot:title>{{ $title }}</x-slot>
     <div class="flex flex-col">
         <div class="-m-1.5 overflow-x-auto">
@@ -45,4 +45,4 @@
         </div>
       </div>
       Hoverable rows
-</x-layout>
+</x-layout-admin>

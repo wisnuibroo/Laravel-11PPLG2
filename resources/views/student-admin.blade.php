@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-admin>
     <x-slot:title>{{ $title }}</x-slot>
 
     <div class="flex flex-col">
@@ -33,4 +33,4 @@
             </div>
         </div>
     </div>
-</x-layout>
+</x-layout-admin>

@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-admin>
     <x-slot:title>{{ $title }}</x-slot>
     <div class="flex flex-col">
         <div class="-m-1.5 overflow-x-auto">
@@ -8,27 +8,18 @@
                 <thead>
                   <tr>
                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">No</th>
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Kelas</th>
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Department</th>
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Student List</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Nama</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Deskripsi</th>
 
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($grades as $grade )
+                    @foreach ($departments as $department )
                   <tr class="odd:bg-white even:bg-gray-100 dark:odd:bg-neutral-900 dark:even:bg-neutral-800">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $grade ->id}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $grade ->name}}
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $grade ->department->name}}
-
-                    </td>
-
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $department ->id}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $department ->name}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $department ->desc}}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        @foreach ($grade->students as $student )
-                        <ul>
-                            <li>{{ $student ->nama}}</li>
-                        </ul>
-                    @endforeach
                     </td>
 
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-sm font-medium">
@@ -45,4 +36,4 @@
         </div>
       </div>
       Hoverable rows
-</x-layout>
+</x-layout-admin>

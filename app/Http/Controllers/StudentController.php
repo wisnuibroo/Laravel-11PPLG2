@@ -20,7 +20,7 @@ class StudentController extends Controller
 
         return view('student', [
             'title' => 'Students',
-            'student' => Student::all()
+            'students' => Student::all()
             ]);
     }
 
