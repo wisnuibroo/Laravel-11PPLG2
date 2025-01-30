@@ -2,22 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-
 
 class Grade extends Model
 {
     use HasFactory;
 
-    //protected $with = ['students'];
+    protected $fillable = ['name', 'department_id'];
+    
 
-    public function students(): HasMany{
-        return $this-> hasMany(Student::class);
+    // Relasi ke Department
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
-    public function department(): BelongsTo{
-        return $this-> belongsTo(Department::class);
+
+    // Relasi ke Students
+    public function students()
+    {
+        return $this->hasMany(Student::class);
     }
 }

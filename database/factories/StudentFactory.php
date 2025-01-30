@@ -20,6 +20,7 @@ class StudentFactory extends Factory
             'nama' => fake()->name($gender = 'male'),
             'grade_id' => fake()-> numberBetween(1,36),
             'email' => fake()->unique()->safeEmail(),
+        
             'alamat' => fake()->address(),
         ];
     }
