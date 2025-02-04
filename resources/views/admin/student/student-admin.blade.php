@@ -78,7 +78,7 @@
                         </tbody>
                     </table>
 
-                    
+
                 </div>
             </div>
 
@@ -188,8 +188,7 @@
     </div>
 
     <script>
-
-document.addEventListener("DOMContentLoaded", function() {
+         document.addEventListener("DOMContentLoaded", function() {
             const searchInput = document.getElementById("default-search");
 
             searchInput.addEventListener("keyup", function() {
