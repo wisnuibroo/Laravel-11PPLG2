@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Student;
 use App\Models\Grade;  // Pastikan untuk mengimpor model Grade
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -28,10 +29,12 @@ class StudentAdminController extends Controller
      */
     public function create()
     {
+
         // Menambahkan data grades ke view create
         return view('admin.student.create', [
             "title" => "Create New Student",
-            'grades' => Grade::all() // Pastikan data grade tersedia di form create
+            'grades' => Grade::all(), // Pastikan data grade tersedia di form create
+            'departments' => Department::all()
         ]);
     }
 
@@ -44,7 +47,7 @@ class StudentAdminController extends Controller
         $validated = $request->validate([
             'nama'      => 'required|string|max:255',
             'grade_id'  => 'required|exists:grades,id',
-            'email'     => 'required|email|max:255', 
+            'email'     => 'required|email|max:255',
             'alamat'    => 'required|string|max:255',
         ]);
 

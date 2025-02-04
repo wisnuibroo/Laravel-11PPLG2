@@ -10,14 +10,23 @@
                         <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter student name" required>
                     </div>
 
+                    <!-- Grade/Class Dropdown -->
                     <div>
                         <label for="grade_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Grade/Class</label>
                         <select id="grade_id" name="grade_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                             <option value="" disabled selected>Select grade</option>
                             @foreach($grades as $grade)
-                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                <option value="{{ $grade->id }}" data-department="{{ $grade->department->name }}" data-department-id="{{ $grade->department->id }}">{{ $grade->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="sm:col-span-1">
+                        <label for="department_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department</label>
+                        <input type="text" id="department_name" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 cursor-not-allowed" readonly>
+
+                        <!-- Hidden input untuk menyimpan department_id -->
+                        <input type="hidden" name="department_id" id="department_id">
                     </div>
 
                     <div class="sm:col-span-2">
@@ -36,4 +45,24 @@
             </form>
         </div>
     </section>
+
+    <!-- JavaScript untuk Auto-fill Department -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let gradeSelect = document.getElementById("grade_id");
+            let departmentNameInput = document.getElementById("department_name");
+            let departmentIdInput = document.getElementById("department_id");
+
+            gradeSelect.addEventListener("change", function () {
+                let selectedOption = gradeSelect.options[gradeSelect.selectedIndex];
+                let departmentName = selectedOption.getAttribute("data-department");
+                let departmentId = selectedOption.getAttribute("data-department-id");
+
+                if (departmentName && departmentId) {
+                    departmentNameInput.value = departmentName;  // Tampilkan nama department
+                    departmentIdInput.value = departmentId;  // Simpan id department untuk form submission
+                }
+            });
+        });
+    </script>
 </x-layout-admin>
